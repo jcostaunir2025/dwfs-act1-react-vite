@@ -9,9 +9,9 @@ const Landing = () => {
     const { categoria, booklist } = useContext(GlobalContext);
     const { libros, loading } = useLibros(categoria);
 
-    const [cartItems, setCartItems] = useState([]);
+    //const [cartItems, setCartItems] = useState([]);
 
-    const handleRemoveCartItem = (product) => {
+    /*const handleRemoveCartItem = (product) => {
         const existingItem = cartItems.find((item) => item.id === product.id);
             if (existingItem && existingItem.cantidad >= 1) {
                 setCartItems(
@@ -30,9 +30,9 @@ const Landing = () => {
         if(cartItems.length === 0){
             setCartItems([]);
         }
-    };
+    };*/
 
-    const handleAddToCart = (product) => {
+    /*const handleAddToCart = (product) => {
         const existingItem = cartItems.find((item) => item.id === product.id);
         if (product.cantidad > 0){
             if (existingItem) {
@@ -47,9 +47,9 @@ const Landing = () => {
             product.cantidad = product.cantidad - 1;
         }
         else{
-            alert("El producto " + product.id + " no tiene existencia en inventario.");
+            alert("El libro de codigo " + product.id + " no tiene existencia en inventario.");
         }
-    };
+    };*/
 
     if (loading) {
         return (
@@ -64,9 +64,9 @@ const Landing = () => {
 
     return (
         <main className="landing">
-            <ShoppingCart cartItems={cartItems} onRemoveCartItem={handleRemoveCartItem} />
+            <ShoppingCart libros={libros} /*cartItems={cartItems} onRemoveCartItem={handleRemoveCartItem}*/ />
             <CategoriaSelector />
-            <Principal libros={libros} onAddToCart={handleAddToCart} />
+            <Principal libros={libros} /*onAddToCart={handleAddToCart}*/ />
         </main>
     );
 };

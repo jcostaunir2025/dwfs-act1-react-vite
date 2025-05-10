@@ -8,6 +8,7 @@ export const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
     const [categoria, setCategoria] = useState('todas');
     const [darkMode, setDarkMode] = useState(false);
+    const [cartItems, setCartItems] = useState([]);
     const usuario = "Pepe";
     const booklist = [...bl];
 
@@ -18,9 +19,12 @@ export const GlobalProvider = ({ children }) => {
     const changeCategoria = (newCategoria) => {
         setCategoria(newCategoria);
     };
+    /*const changeCartItem = (newCartItem) => {
+        setCartItems(newCartItem);
+    };*/
 
     return (
-        <GlobalContext.Provider value={{ categoria, darkMode, usuario, booklist, toggleDarkMode, changeCategoria }}>
+        <GlobalContext.Provider value={{ categoria, darkMode, usuario, booklist, cartItems, setCartItems, toggleDarkMode, changeCategoria }}>
             {children}
         </GlobalContext.Provider>
     );
