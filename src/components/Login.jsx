@@ -1,15 +1,34 @@
-import {useContext, useEffect} from "react";
+import {useEffect} from "react";
 import {useNavigate} from "react-router";
-import Header from "./Header.jsx";
-import Footer from "./Footer.jsx";
-import {GlobalContext} from "../context/GlobalContext.jsx";
 
 const Login = ({ user }) => {
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        setTimeout((user)=> navigate('/libros/todas'),3000);
-    },[])
+    useEffect(() => {
+        let timeoutId;
+
+        const handleInactivity = () => {
+            timeoutId = setTimeout(() => {
+                navigate('/libros/todas');
+            }, 5000);
+        };
+
+        const handleActivity = () => {
+            clearTimeout(timeoutId);
+            handleInactivity();
+        };
+
+        handleInactivity();
+
+        window.addEventListener('mousemove', handleActivity);
+        window.addEventListener('keypress', handleActivity);
+
+        return () => {
+            clearTimeout(timeoutId);
+            window.removeEventListener('mousemove', handleActivity);
+            window.removeEventListener('keypress', handleActivity);
+        };
+    }, [navigate]);
 
     return (
         <div className="login">

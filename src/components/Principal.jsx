@@ -1,6 +1,6 @@
 import React from "react";
-import {listalibros} from "../data/listalibros.js";
 import Libro from "./libro.jsx";
+
 
 const Principal = ({ libros, onAddToCart }) => {
     return (

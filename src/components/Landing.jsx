@@ -13,18 +13,23 @@ const Landing = () => {
 
     const handleRemoveCartItem = (product) => {
         const existingItem = cartItems.find((item) => item.id === product.id);
-            if (existingItem && existingItem.cantidad > 1) {
+            if (existingItem && existingItem.cantidad >= 1) {
                 setCartItems(
                     cartItems.map((item) =>
                         item.id === product.id ? { ...item, cantidad: item.cantidad - 1 } : item
                     )
                 );
                 libros.find((item) => item.id === product.id).cantidad += 1;
-            } else if (existingItem && existingItem.cantidad === 1) {
+            }
+            if (existingItem && existingItem.cantidad === 0) {
                 let newcantidad = booklist.find((item) => item.id === product.id).cantidad;
                 libros.find((item) => item.id === product.id).cantidad = newcantidad;
-                setCartItems([]);
+                    cartItems.splice(cartItems.indexOf(existingItem), 1);
             }
+
+        if(cartItems.length === 0){
+            setCartItems([]);
+        }
     };
 
     const handleAddToCart = (product) => {
@@ -45,8 +50,6 @@ const Landing = () => {
             alert("El producto " + product.id + " no tiene existencia en inventario.");
         }
     };
-
-
 
     if (loading) {
         return (

@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./Header.jsx";
 
 const ShoppingCart = ({ cartItems, onRemoveCartItem }) => {
     const totalPrice = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0);

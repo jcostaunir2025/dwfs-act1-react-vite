@@ -1,7 +1,7 @@
 //import React, { createContext, useState } from 'react';
 
 import {createContext, useState} from "react";
-import {booklist, booklist as bl} from "../data/listalibros.js";
+import {booklist as bl} from "../data/listalibros.js";
 
 export const GlobalContext = createContext();
 

@@ -5,24 +5,6 @@ const useLibros = (categoria) => {
     const [libros, setLibros] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    /*useEffect(() => {
-        const fetchLibros = () => {
-            setLoading(true);
-                let librosSeleccionados = [];
-                if (categoria === 'novelas') {
-                } else if (categoria === 'cienciaficcion') {
-                    librosSeleccionados = libros.filter(x => x.categoria === 'cienciaficcion');
-                } else if (categoria === 'historia') {
-                    librosSeleccionados = libros.filter(x => x.categoria === 'historia');
-                } else if (categoria === 'psicologia') {
-                    librosSeleccionados = libros.filter(x => x.categoria === 'psicologia');
-                }
-                setLibros(librosSeleccionados);
-            }
-            setLoading(false);
-        fetchLibros();
-    }, [categoria]);*/
-
     useEffect(() => {
         const fetchLibros = async () => {
             setLoading(true);
