@@ -11,7 +11,7 @@ const Login = ({ user }) => {
         const handleInactivity = () => {
             timeoutId = setTimeout(() => {
                 navigate('/libros/todas');
-            }, 5000000);
+            }, 5000);
         };
 
         const handleActivity = () => {
@@ -31,6 +31,10 @@ const Login = ({ user }) => {
         };
     }, [navigate]);
 
+
+    const handleButtonClick = () => {
+        navigate('/libros/todas');
+    };
     return (
 
        <Grid container direction="column" spacing={0}
@@ -53,15 +57,15 @@ const Login = ({ user }) => {
                     </Grid>
 
                     <Grid container >
-                        <Grid item item xs={12} sx={{mt: 2}}>
+                        <Grid   xs={12} sx={{mt: 2}}>
                             <TextField label="Contraseña" type="pss"
                                        placeholder='Contraseña'
                                        fullWidth={true}/>
                         </Grid>
                     </Grid>
                     <Grid container spacing={2} sx={{mb: 2}}>
-                        <Grid item xs={12} sx={{mt: 2}} sm={12}>
-                            <Button variant='contained' fullWidth>
+                        <Grid  xs={12} sx={{mt: 2}} sm={12}>
+                            <Button variant='contained' fullWidth  onClick={handleButtonClick}>
                                 Inicio
                             </Button>
                         </Grid>
