@@ -11,6 +11,13 @@ export const GlobalProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const usuario = "Pepe";
     const booklist = [...bl];
+    const [deliveryInfo, setDeliveryInfo] = useState({
+        nombre: '',
+        direccion: '',
+        ciudad: '',
+        telefono: '',
+        metodoPago: '',
+    });
 
     const toggleDarkMode = () => {
         setDarkMode(prev => !prev);
@@ -24,7 +31,8 @@ export const GlobalProvider = ({ children }) => {
     };*/
 
     return (
-        <GlobalContext.Provider value={{ categoria, darkMode, usuario, booklist, cartItems, setCartItems, toggleDarkMode, changeCategoria }}>
+        <GlobalContext.Provider value={{ categoria, darkMode, usuario, booklist, cartItems, setCartItems,
+            toggleDarkMode, changeCategoria, deliveryInfo, setDeliveryInfo }}>
             {children}
         </GlobalContext.Provider>
     );

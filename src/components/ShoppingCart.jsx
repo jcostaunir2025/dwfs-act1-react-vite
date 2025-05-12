@@ -1,10 +1,15 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import {GlobalContext} from "../context/GlobalContext.jsx";
+import {useNavigate} from "react-router";
 
 const ShoppingCart = ({ libros /*cartItems, onRemoveCartItem }*/}) => {
     const { cartItems, setCartItems, booklist } = useContext(GlobalContext);
     const totalPrice = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+    const navigate = useNavigate();
 
+    const goCheckout = () => {
+        navigate("/checkout");
+    };
     /*const handleChangeCartItem = (e) => {
         changeCartItem(e.target.value);
     };*/
@@ -36,22 +41,25 @@ const ShoppingCart = ({ libros /*cartItems, onRemoveCartItem }*/}) => {
     };
 
     return (
-        <div>
+        <article>
             <h2>Shopping Cart</h2>
             {cartItems.length === 0 ? (
                 <p>Tu carro esta vacio.</p>
             ) : (
-                <ul>
-                    {cartItems.map((item) => (
-                        <li key={item.id}>
-                            {item.nombre} - ${item.precio} x {item.cantidad}
-                            <button onClick={() => handleRemoveCartItem(item)}>Remover</button>
-                        </li>
-                    ))}
-                </ul>
+                <section>
+                    <ul>
+                        {cartItems.map((item) => (
+                            <li key={item.id}>
+                                {item.nombre} - ${item.precio} x {item.cantidad}
+                                <button onClick={() => handleRemoveCartItem(item)}>Remover</button>
+                            </li>
+                        ))}
+                    </ul>
+                    <button onClick={() => goCheckout()}>Continuar con la compra</button>
+                </section>
             )}
             <p>Total: ${totalPrice}</p>
-        </div>
+        </article>
     );
 }
 
