@@ -5,7 +5,8 @@ export const listalibros = [
         autor: "Laura Flores",
         categoria: "novelas",
         cantidad: 10,
-        precio:20
+        precio:20,
+        isFiltered: false,
     },
     {
         id: 2,
@@ -13,7 +14,8 @@ export const listalibros = [
         autor: "Jorge Navas",
         categoria: "novelas",
         cantidad: 5,
-        precio:21
+        precio:21,
+        isFiltered: false,
     },
     {
         id: 3,
@@ -21,7 +23,8 @@ export const listalibros = [
         autor: "John Smith",
         categoria: "cienciaficcion",
         cantidad: 4,
-        precio:15
+        precio:15,
+        isFiltered: false,
     },
     {
         id: 4,
@@ -29,7 +32,8 @@ export const listalibros = [
         autor: "Andrea Ianone",
         categoria: "historia",
         cantidad: 3,
-        precio:12
+        precio:12,
+        isFiltered: false,
     },
     {
         id: 5,
@@ -37,7 +41,8 @@ export const listalibros = [
         autor: "Isabel Linares",
         categoria: "novelas",
         cantidad: 2,
-        precio:14
+        precio:14,
+        isFiltered: false,
     },
     {
         id: 6,
@@ -45,7 +50,8 @@ export const listalibros = [
         autor: "Pedro Castilla",
         categoria: "psicologia",
         cantidad: 12,
-        precio:20
+        precio:20,
+        isFiltered: false,
     },
     {
         id: 7,
@@ -53,7 +59,8 @@ export const listalibros = [
         autor: "JJ Benitez",
         categoria: "cienciaficcion",
         cantidad: 5,
-        precio:16
+        precio:16,
+        isFiltered: false,
     },
     {
         id: 8,
@@ -61,7 +68,8 @@ export const listalibros = [
         autor: "Carlos Girona",
         categoria: "psicologia",
         cantidad: 3,
-        precio:25
+        precio:25,
+        isFiltered: false,
     }
 ];
 
@@ -99,3 +107,6 @@ export const booklist = [
         cantidad: 3
     }
 ];
+
+export const suggestions = ["todos", "La La Land", "La odisea", "The outsider", "Historia de Italia",
+    "Noche de Verano", "Domina tu mente", "Solo para tus ojos", "Leyes para ser feliz" ];

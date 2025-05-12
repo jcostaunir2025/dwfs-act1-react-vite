@@ -10,8 +10,8 @@ const Login = ({ user }) => {
 
         const handleInactivity = () => {
             timeoutId = setTimeout(() => {
-                navigate('/libros/todas');
-            }, 50000);
+                navigate('/libros/todos');
+            }, 10000);
         };
 
         const handleActivity = () => {
@@ -33,19 +33,14 @@ const Login = ({ user }) => {
 
 
     const handleButtonClick = () => {
-        navigate('/libros/todas');
-    };
-
-    const registerButtonClick = () => {
-        navigate('/libros/registro');
+        navigate('/libros/todos');
     };
     return (
-        <Grid container direction="column" spacing={0}
-              alignItems="center" justifyContent="center"
-              sx={{minHeight: '100vh',backgroundColor: 'primary.main' ,padding: 4}}>
+        <Grid container direction="column" spacing={0} alignItems="center" justifyContent="center"
+              sx={{minHeight: '100vh',backgroundColor: 'primary.main' ,padding: '4'}}>
             <Grid item className = 'box-shadown'
-                  xs={ 3 }
-                  sx={{backgroundColor: 'white', padding: 3,borderRadius:2}}>
+                  xs={3}
+                  sx={{backgroundColor: 'white', padding: '3',borderRadius:2}}>
                 <Typography variant='h5' sx={ {mb:1}}>
                     Inicio Sesión
                 </Typography>
@@ -59,24 +54,19 @@ const Login = ({ user }) => {
 
                     </Grid>
 
-                    <Grid container  spacing={2}>
+                    <Grid container >
                         <Grid   xs={12} sx={{mt: 2}}>
-
-                            <TextField variant="filled" label="Password" type="password" />
+                            <TextField label="Contraseña" type="pss"
+                                       placeholder='Contraseña'
+                                       fullWidth={true}/>
                         </Grid>
                     </Grid>
-
-
-                    <Grid container  spacing={2} sx={{mb: 2}}>
-                    <Button variant='contained' fullWidth  onClick={handleButtonClick}>
-                            Inicio
-                        </Button>
-                    </Grid>
-
-                    <Grid container direction='row' justifyContent='end'>
-                        <Button variant='contained' fullWidth  onClick={registerButtonClick}>
-                            Crear una cuenta
-                        </Button>
+                    <Grid container spacing={2} sx={{mb: 2}}>
+                        <Grid  xs={12} sx={{mt: 2}} sm={12}>
+                            <Button variant='contained' fullWidth  onClick={handleButtonClick}>
+                                Inicio
+                            </Button>
+                        </Grid>
                     </Grid>
                 </form>
 
