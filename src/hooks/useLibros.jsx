@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { listalibros } from '../data/listalibros.js';
 
-const useLibros = (categoria) => {
+const useLibros = (inputsuggestion) => {
     const [libros, setLibros] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -9,19 +9,15 @@ const useLibros = (categoria) => {
         const fetchLibros = async () => {
             setLoading(true);
             try {
-                // Simulación de retardo
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 let librosSeleccionados = [];
-                if (categoria === 'novelas') {
-                    librosSeleccionados = listalibros.filter(x => x.categoria === 'novelas');
-                } else if (categoria === 'cienciaficcion') {
-                    librosSeleccionados = listalibros.filter(x => x.categoria === 'cienciaficcion');
-                } else if (categoria === 'historia') {
-                    librosSeleccionados = listalibros.filter(x => x.categoria === 'historia');
-                } else if (categoria === 'psicologia') {
-                    librosSeleccionados = listalibros.filter(x => x.categoria === 'psicologia');
-                } else if (categoria === 'todas'){
-                    librosSeleccionados = listalibros;
+
+                if (inputsuggestion !== undefined && inputsuggestion !== null) {
+                    if (inputsuggestion.length === 0 || inputsuggestion === "todos") {
+                        librosSeleccionados = listalibros;
+                    } else if (inputsuggestion.length > 0) {
+                        librosSeleccionados = listalibros.filter(x => x.nombre.includes(inputsuggestion));
+                    }
                 }
 
                 setLibros(librosSeleccionados);
@@ -33,7 +29,7 @@ const useLibros = (categoria) => {
         };
 
         fetchLibros();
-    }, [categoria]);
+    }, [inputsuggestion]);
 
     return { libros, loading };
 };
