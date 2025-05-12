@@ -20,7 +20,7 @@ function AppContent() {
     const { darkMode, usuario } = useContext(GlobalContext);
 
     return (
-        <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
+        <div id="app-div" className={`App ${darkMode ? 'dark-mode' : ''}`}>
             <Header user={usuario}/>
             <Routes>
                 <Route path="/" element={<Login />} />
