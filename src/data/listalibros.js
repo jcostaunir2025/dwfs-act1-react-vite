@@ -99,3 +99,6 @@ export const booklist = [
         cantidad: 3
     }
 ];
+
+export const suggestions = ["todos", "La La Land", "La odisea", "The outsider", "Historia de Italia",
+    "Noche de Verano", "Domina tu mente", "Solo para tus ojos", "Leyes para ser feliz" ];

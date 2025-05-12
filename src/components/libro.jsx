@@ -1,38 +1,53 @@
-import React, {useContext} from 'react';
 import {GlobalContext} from "../context/GlobalContext.jsx";
+import {useLocation, useNavigate} from "react-router";
+import {useContext, useEffect, useState} from "react";
 
-const Libro = ({ libro /*, onAddToCart*/ }) => {
+const Libro = ({ libro, titulo, libros }) => {
+    const navigate = useNavigate();
+    const { cartItems, booklist } = useContext(GlobalContext);
+    let libroid = -1;
+    const location  = useLocation();
+    const [newlibros, setnewlibros] = useState([libros]);
 
-    const { cartItems, setCartItems } = useContext(GlobalContext);
+    if(location.state !== undefined && location.state !== null) {
+        libroid = parseInt(location.state.id);
+    }
 
-    const handleAddToCart = (product) => {
-        const existingItem = cartItems.find((item) => item.id === product.id);
-        if (product.cantidad > 0){
-            if (existingItem) {
-                setCartItems(
-                    cartItems.map((item) =>
-                        item.id === product.id ? { ...item, cantidad: item.cantidad + 1 } : item
-                    )
-                );
-            } else {
-                setCartItems([...cartItems, { ...product, cantidad: 1 }]);
+    useEffect(() => {
+        const syncLibros = async () => {
+
+            try {
+                if (cartItems.length > 0) {
+                    libros.forEach((product) => {
+                        let existingItem = cartItems.find((item) => item.id === product.id);
+
+                        if (existingItem && existingItem.id === libroid) {
+                            product.cantidad = booklist.find((b) => b.id === product.id).cantidad - existingItem.cantidad;
+                        }
+                    })
+                    const newlibros = [...libros];
+                    setnewlibros(newlibros);
+                }
+
+            } catch (error) {
+                console.log(error);
             }
-            product.cantidad = product.cantidad - 1;
-        }
-        else{
-            alert("El libro de codigo " + product.id + " no tiene existencia en inventario.");
-        }
+        };
+
+        syncLibros().then(r => setTimeout(() => r, 2000));
+    }, [libros]);
+
+    const handleDetalleLibroClick = (id) => {
+        navigate(`/libros/${titulo}/detalle/${id}`, {state:{datalibro: libro, libros:libros}});
     };
 
     return (
-        <div className="libro">
+        <div className="Libro">
             <h2>{libro.nombre}</h2>
             <p><strong>Codigo:</strong> {libro.id}</p>
-            <p><strong>Autor:</strong> {libro.autor}</p>
-            <p><strong>Categoría:</strong> {libro.categoria}</p>
-            <p><strong>Disponibles:</strong> {libro.cantidad}</p>
+            <p><strong>Cantidad:</strong> {libro.cantidad}</p>
             <div className="disponibles">
-                <button onClick={() => handleAddToCart(libro)/*() => handleAddToCart(libro)*/}>Agregar al Carrito</button>
+                <button onClick={() => {handleDetalleLibroClick(libro.id)}}>Ver Detalle Libro</button>
             </div>
         </div>
     );

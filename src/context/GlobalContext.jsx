@@ -1,16 +1,17 @@
-//import React, { createContext, useState } from 'react';
-
 import {createContext, useState} from "react";
-import {booklist as bl} from "../data/listalibros.js";
+import {booklist as bl, suggestions as su} from "../data/listalibros.js";
 
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
-    const [categoria, setCategoria] = useState('todas');
+    const [titulo, setTitulo] = useState('todos');
     const [darkMode, setDarkMode] = useState(false);
     const [cartItems, setCartItems] = useState([]);
-    const usuario = "Pepe";
+    const usuario = "G9";
     const booklist = [...bl];
+    const suggestions = [...su];
+    const [inputsuggestion, setInputsuggestion] = useState('');
+
     const [deliveryInfo, setDeliveryInfo] = useState({
         nombre: '',
         direccion: '',
@@ -23,16 +24,15 @@ export const GlobalProvider = ({ children }) => {
         setDarkMode(prev => !prev);
     };
 
-    const changeCategoria = (newCategoria) => {
-        setCategoria(newCategoria);
+    const changeTitulo = (newTitulo) => {
+        setTitulo(newTitulo);
     };
-    /*const changeCartItem = (newCartItem) => {
-        setCartItems(newCartItem);
-    };*/
+    const changeInputsuggestion = (newInput) => {
+        setInputsuggestion(newInput);
+    };
 
     return (
-        <GlobalContext.Provider value={{ categoria, darkMode, usuario, booklist, cartItems, setCartItems,
-            toggleDarkMode, changeCategoria, deliveryInfo, setDeliveryInfo }}>
+        <GlobalContext.Provider value={{ titulo, darkMode, usuario, booklist, cartItems, setCartItems, inputsuggestion, suggestions, toggleDarkMode, changeTitulo, changeInputsuggestion, deliveryInfo, setDeliveryInfo }}>
             {children}
         </GlobalContext.Provider>
     );
