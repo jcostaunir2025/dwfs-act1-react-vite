@@ -10,8 +10,8 @@ import {
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import libro1 from '../assets/image/libro1.png';
-import libro2 from '../assets/image/libro2.png';
-import libro3 from '../assets/image/libro3.png';
+import libro2 from '../assets/image/libro1.png';
+import libro3 from '../assets/image/libro1.png';
 const libros = [
     {
         titulo: 'Cien años de soledad',

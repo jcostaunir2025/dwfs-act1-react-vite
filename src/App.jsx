@@ -8,6 +8,7 @@ import Login from "./components/Login.jsx";
 import LibroDetalle from "./components/LibroDetalle.jsx";
 import Libro from "./components/Libro.jsx";
 import Checkout from "./components/Checkout/Checkout.jsx";
+import {RegisterPage} from "./components/Register.jsx";
 
 function AppContent() {
     const { darkMode, usuario } = useContext(GlobalContext);
@@ -20,6 +21,7 @@ function AppContent() {
                 <Route path="/libros/:titulo" element={<Landing />} />
                 <Route path="/libros/:titulo/:lid" element={<Libro />} />
                 <Route path="/libros/:titulo/detalle/:lid" element={<LibroDetalle />} />
+                <Route path="/libros/registro" element={<RegisterPage />} />
                 <Route path="/checkout" element={<Checkout />} />
             </Routes>
             <Footer />
