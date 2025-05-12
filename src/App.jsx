@@ -14,6 +14,7 @@ import {Route, Routes} from "react-router";
 import Landing from "./components/Landing.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
+import {RegisterPage} from "./components/Register.jsx";
 
 function AppContent() {
     const { darkMode, usuario } = useContext(GlobalContext);
@@ -24,6 +25,7 @@ function AppContent() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/libros/:categoria" element={<Landing />} />
+                <Route path="/libros/registro" element={<RegisterPage />} />
             </Routes>
             <Footer />
         </div>
