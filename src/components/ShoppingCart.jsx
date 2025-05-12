@@ -1,9 +1,11 @@
 import React, {useContext} from "react";
 import {GlobalContext} from "../context/GlobalContext.jsx";
+import {useNavigate} from "react-router";
 
 const ShoppingCart = ({ libros, remove }) => {
     const { cartItems, setCartItems, booklist } = useContext(GlobalContext);
     const totalPrice = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+    const navigate = useNavigate();
 
     const goCheckout = () => {
         navigate("/checkout");

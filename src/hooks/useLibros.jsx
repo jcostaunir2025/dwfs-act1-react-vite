@@ -4,7 +4,7 @@ import { listalibros } from '../data/listalibros.js';
 const useLibros = (inputsuggestion) => {
     const [libros, setLibros] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const books = listalibros;
     useEffect(() => {
         const fetchLibros = async () => {
             setLoading(true);
@@ -14,12 +14,14 @@ const useLibros = (inputsuggestion) => {
 
                 if (inputsuggestion !== undefined && inputsuggestion !== null) {
                     if (inputsuggestion.length === 0 || inputsuggestion === "todos") {
-                        librosSeleccionados = listalibros;
+                        librosSeleccionados = libros.length > 0 ? libros : books;
                     } else if (inputsuggestion.length > 0) {
-                        librosSeleccionados = listalibros.filter(x => x.nombre.includes(inputsuggestion));
+                        let seleccionadoId = parseInt(books.filter((item) => item.nombre.includes(inputsuggestion)).map((item) => item.id));
+                        librosSeleccionados = books.map(item =>
+                                item.id === seleccionadoId ? { ...item, isFiltered: !item.isFiltered }  : item
+                        );
                     }
                 }
-
                 setLibros(librosSeleccionados);
             } catch (error) {
                 console.log(error);
@@ -28,7 +30,7 @@ const useLibros = (inputsuggestion) => {
             }
         };
 
-        fetchLibros();
+        fetchLibros().then(r => setTimeout(() => r, 2000));
     }, [inputsuggestion]);
 
     return { libros, loading };

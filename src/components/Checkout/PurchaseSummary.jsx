@@ -14,7 +14,7 @@ const PurchaseSummary = ({ setStep }) => {
             <article>
                 <h2>Resumen de la compra</h2>
                 {cartItems.map(item => (
-                    <BookSummary bookInfo={item}></BookSummary>
+                    <BookSummary key={item.id} bookInfo={item}></BookSummary>
                 ))}
                 <div className="summary">
                     <span><strong>Total:</strong></span>

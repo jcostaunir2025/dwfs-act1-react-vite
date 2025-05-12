@@ -39,8 +39,8 @@ const inputAutoComplete = () => {
             {showSuggestions && filteredSuggestions.length > 0 && (
                 <ul>
                     {filteredSuggestions.map((suggestion, index) => (
-                        <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
-                            {suggestion}
+                        <li key={index}>
+                            <button onClick={() => handleSuggestionClick(suggestion)}>{suggestion}</button>
                         </li>
                     ))}
                 </ul>

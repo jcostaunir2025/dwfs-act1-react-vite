@@ -13,7 +13,7 @@ function PaymentMethod (){
     const goHome = () => {
         setCartItems([]);
         setShowAlert(false);
-        navigate("/libros/:categoria");
+        navigate("/libros/:titulo");
     };
 
     const voucher = <VoucherSuccess/>;
