@@ -1,3 +1,7 @@
+import libro1 from '../assets/image/libro1.png';
+import libro2 from '../assets/image/libro2.png';
+import libro3 from '../assets/image/libro3.png';
+
 export const listalibros = [
     {
         id: 1,
@@ -6,6 +10,7 @@ export const listalibros = [
         categoria: "novelas",
         cantidad: 10,
         precio:20,
+        image : libro1,
         isFiltered: false,
     },
     {
@@ -15,6 +20,7 @@ export const listalibros = [
         categoria: "novelas",
         cantidad: 5,
         precio:21,
+        image : libro2,
         isFiltered: false,
     },
     {
@@ -24,6 +30,7 @@ export const listalibros = [
         categoria: "cienciaficcion",
         cantidad: 4,
         precio:15,
+        image : libro3,
         isFiltered: false,
     },
     {
@@ -33,6 +40,7 @@ export const listalibros = [
         categoria: "historia",
         cantidad: 3,
         precio:12,
+        image : libro1,
         isFiltered: false,
     },
     {
@@ -42,6 +50,7 @@ export const listalibros = [
         categoria: "novelas",
         cantidad: 2,
         precio:14,
+        image : libro2,
         isFiltered: false,
     },
     {
@@ -51,6 +60,7 @@ export const listalibros = [
         categoria: "psicologia",
         cantidad: 12,
         precio:20,
+        image : libro3,
         isFiltered: false,
     },
     {
@@ -60,6 +70,7 @@ export const listalibros = [
         categoria: "cienciaficcion",
         cantidad: 5,
         precio:16,
+        image : libro1,
         isFiltered: false,
     },
     {
@@ -69,6 +80,7 @@ export const listalibros = [
         categoria: "psicologia",
         cantidad: 3,
         precio:25,
+        image : libro2,
         isFiltered: false,
     }
 ];
