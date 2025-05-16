@@ -7,16 +7,23 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-const Header = ({ user }) => {
-
-    const [mobileOpen, setMobileOpen] = useState(false);
-
-    const navItems = [
+export const navItems = [
         { text: 'Inicio', href: '/', icon: <HomeIcon /> },
         { text: 'Acerca de Nosotros', href: '/about', icon: <InfoIcon /> },
         { text: 'Contactanos', href: '/contact', icon: <ContactsIcon /> },
         { text: 'Carrito', href: '/carrito', icon: <ShoppingCartIcon /> , },
     ];
+
+const Header = ({ user }) => {
+
+    const [mobileOpen, setMobileOpen] = useState(false);
+
+    // const navItems = [
+    //     { text: 'Inicio', href: '/', icon: <HomeIcon /> },
+    //     { text: 'Acerca de Nosotros', href: '/about', icon: <InfoIcon /> },
+    //     { text: 'Contactanos', href: '/contact', icon: <ContactsIcon /> },
+    //     { text: 'Carrito', href: '/carrito', icon: <ShoppingCartIcon /> , },
+    // ];
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -41,7 +48,7 @@ const Header = ({ user }) => {
 
     const upperUser = user.toUpperCase();
     return (
-        <AppBar position="static" sx={{ bgcolor: '#1976d2', boxShadow: 3 }}>
+        <AppBar position="static" sx={{ bgcolor: '#01579b', boxShadow: 3 }}>
             <Toolbar sx={{ justifyContent: 'space-between' }}>
                 {/* Logo y título */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
