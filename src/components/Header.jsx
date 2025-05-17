@@ -51,14 +51,12 @@ const Header = ({ user }) => {
             <Toolbar sx={{ justifyContent: 'space-between' }}>
                 {/* Logo y título */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <a href="/libros/todos">
                         <img
                             src={logo} // Cambia esto por la ruta de tu logo
                             alt="Logo"
                             style={{ height: '40px', objectFit: 'contain' }}
                             href="/libros/todos"
                         />
-                    </a>
                     <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#fff' }}>
                         Bienvenido a Relatos de Papel - {upperUser}
                     </Typography>
