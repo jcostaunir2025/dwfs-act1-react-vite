@@ -28,6 +28,7 @@ const inputAutoComplete = () => {
 
     return (
         <div>
+            <br/>
             <label>Busqueda por titulo de libro: </label>
             <input
                 id="titulo"

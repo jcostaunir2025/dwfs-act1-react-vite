@@ -1,61 +1,52 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {GlobalContext} from "../context/GlobalContext.jsx";
 import {useNavigate} from "react-router";
+import {Button, Drawer, Box, Typography, IconButton, Divider } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import BookList from "./BookList.jsx";
 
-const ShoppingCart = ({ libros, remove }) => {
-    const { cartItems, setCartItems, booklist } = useContext(GlobalContext);
-    const totalPrice = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+const ShoppingCart = () => {
+    const {cartItems} = useContext(GlobalContext);
     const navigate = useNavigate();
 
     const goCheckout = () => {
         navigate("/checkout");
     };
 
-    const handleRemoveCartItem = (product) => {
-        const existingItem = cartItems.find((item) => item.id === product.id);
-        if (existingItem && existingItem.cantidad >= 1) {
-            setCartItems(
-                cartItems.map((item) =>
-                    item.id === product.id ? { ...item, cantidad: item.cantidad - 1 } : item
-                )
-            );
-            libros.find((item) => item.id === product.id).cantidad += 1;
-            if (existingItem.cantidad === 1) {
-                let newcantidad = booklist.find((item) => item.id === product.id).cantidad;
-                libros.find((item) => item.id === product.id).cantidad = newcantidad;
-                cartItems.splice(cartItems.indexOf(existingItem), 1);
-            }
-        }
+    const [open, setOpen] = useState(false);
 
-        if(cartItems.every(element => element.cantidad === 0) || cartItems.length === 0){
-            setCartItems([]);
-        }
+    const toggleDrawer = (state) => () => {
+        setOpen(state);
     };
 
     return (
-        <article>
-            <h2>Shopping Cart</h2>
-            {cartItems.length === 0 ? (
-                <p>Tu carro esta vacio.</p>
-            ) : (
-                <section>
-                    <ul>
-                        {cartItems.map((item) => (
-                            <li key={item.id}>
-                                {item.nombre} - ${item.precio} x {item.cantidad}
-                                {remove && (
-                                    <button onClick={() => {handleRemoveCartItem(item)}}>Remover</button>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
-                    {remove && (
-                    <button onClick={() => goCheckout()}>Continuar con la compra</button>
+        <div>
+            <Button variant="contained" onClick={toggleDrawer(true)} color="secondary">
+                Mostrar Carrito
+            </Button>
+            <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}
+                    slotProps={{ paper: { sx: { width: 500 },}}}>
+                <Box sx={{ p: 2, position: 'relative', height: '100%' }}>
+                    <IconButton
+                        onClick={toggleDrawer(false)}
+                        sx={{ position: 'absolute', top: 8, right: 8 }}>
+                        <CloseIcon />
+                    </IconButton>
+                    <Typography variant="h6" gutterBottom>
+                        Mi Carrito
+                    </Typography>
+                    <Divider /><br/><br/>
+                    <Typography variant="body2">
+                        <BookList></BookList>
+                    </Typography>
+                    <br/>
+                    {cartItems.length > 0 && (
+                        <Button variant="contained" disableElevation onClick={() => goCheckout()}>
+                            Continuar con la compra</Button>
                     )}
-                </section>
-            )}
-            <p>Total: ${totalPrice}</p>
-        </article>
+                </Box>
+            </Drawer>
+        </div>
     );
 }
 

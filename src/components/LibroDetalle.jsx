@@ -34,24 +34,9 @@ const LibroDetalle = () => {
         }
     };
 
-    /*return (
-        <div className="LibroDetalle">
-            <ShoppingCart libros={dataLibros} remove={false}  />
-            <h2>{dataLibro.nombre}</h2>
-            <p><strong>Codigo:</strong> {dataLibro.id}</p>
-            <p><strong>Autor:</strong> {dataLibro.autor}</p>
-            <p><strong>Categoría:</strong> {dataLibro.categoria}</p>
-            <p><strong>Disponibles:</strong> {dataLibro.cantidad}</p>
-            <div className="disponibles">
-                <button onClick={() => handleAddToCart(dataLibro)}>Agregar al Carrito</button>
-                <button onClick={() => handleRegresarListaLibrosClick(dataLibro.id)}>Regresar a listado</button>
-            </div>
-        </div>
-    );*/
-
     return (
         <div className="LibroDetalle">
-        <ShoppingCart libros={dataLibros} remove={false}  />
+        <ShoppingCart libros={dataLibros} remove={false} />
         <Grid item xs={6} sm={3} md={2} key={dataLibro.id}>
             <Card>
                 <Typography variant="h4">Nombre: {dataLibro.autor}</Typography>
