@@ -13,7 +13,7 @@ const Login = ({ user }) => {
         const handleInactivity = () => {
             timeoutId = setTimeout(() => {
                 navigate('/libros/todos');
-            }, 1000000);
+            }, 5000);
         };
 
         const handleActivity = () => {

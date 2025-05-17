@@ -39,7 +39,7 @@ const BookDetail = () => {
 
     return (
         <div className="LibroDetalle" >
-        <ShoppingCart libros={dataLibros} remove={false} />
+        <ShoppingCart libros={dataLibros} />
         <Grid item xs={6} sm={3} md={2} key={dataLibro.id}>
             <Card  sx={{
                 maxWidth: 200,
