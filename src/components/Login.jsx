@@ -13,7 +13,7 @@ const Login = ({ user }) => {
         const handleInactivity = () => {
             timeoutId = setTimeout(() => {
                 navigate('/libros/todos');
-            }, 10000);
+            }, 1000000);
         };
 
         const handleActivity = () => {
@@ -39,10 +39,10 @@ const Login = ({ user }) => {
     };
     return (
         <Grid container direction="column" spacing={0} alignItems="center" justifyContent="center"
-              sx={{minHeight: '100vh',backgroundColor: 'primary.main' ,padding: '4'}}>
+              sx={{minHeight: '100vh',backgroundColor: 'primary.main' ,padding: 4}}>
             <Grid item className = 'box-shadown'
                   xs={3}
-                  sx={{backgroundColor: 'white', padding: '3',borderRadius:2}}>
+                  sx={{backgroundColor: 'white', padding: 5,borderRadius:2}}>
                 <Typography variant='h5' sx={ {mb:1}}>
                     Inicio Sesión
                 </Typography>
@@ -76,5 +76,6 @@ const Login = ({ user }) => {
         </Grid>
     );
 };
+
 
 export default Login;

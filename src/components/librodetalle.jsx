@@ -51,14 +51,22 @@ const LibroDetalle = () => {
 
     return (
         <div className="LibroDetalle">
+
         <ShoppingCart libros={dataLibros} remove={false}  />
-        <Grid item xs={6} sm={3} md={2} key={dataLibro.id}>
+            <Grid item className = 'box-shadown'
+                  xs={1}
+                  sx={{backgroundColor: 'white', padding: 5,borderRadius:2}}>
+        <Grid item xs={6} sm={6} md={2} key={dataLibro.id}>
             <Card>
                 <Typography variant="h4">Nombre: {dataLibro.autor}</Typography>
                 <CardMedia
                     component="img"
-                    height="150"
                     image={dataLibro.image}
+                    sx={{
+                        maxWidth: 300,
+                        margin: "0 auto",
+                        padding: "1 em",
+                    }}
                     alt={dataLibro.autor}
                 />
                 <CardContent>
@@ -91,6 +99,7 @@ const LibroDetalle = () => {
                 </CardContent>
             </Card>
         </Grid>
+            </Grid>
         </div>
     );
 
