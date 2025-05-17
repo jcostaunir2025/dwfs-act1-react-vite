@@ -4,7 +4,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {Button, Card, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 
 
-const Libro = ({ libro, titulo, libros }) => {
+const Book = ({ libro, titulo, libros }) => {
     const navigate = useNavigate();
     const {cartItems, booklist} = useContext(GlobalContext);
     let libroid = -1;
@@ -89,4 +89,4 @@ const Libro = ({ libro, titulo, libros }) => {
     );
 };
 
-export default Libro;
+export default Book;

@@ -4,7 +4,7 @@ import {useLocation, useNavigate} from "react-router";
 import ShoppingCart from "./ShoppingCart.jsx";
 import {Button, Card, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 
-const LibroDetalle = () => {
+const BookDetail = () => {
     const { cartItems, setCartItems, titulo/*categoria*/ } = useContext(GlobalContext);
     const navigate = useNavigate();
     const location  = useLocation();
@@ -81,4 +81,4 @@ const LibroDetalle = () => {
 
 };
 
-export default LibroDetalle;
+export default BookDetail;

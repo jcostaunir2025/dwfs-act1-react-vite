@@ -1,5 +1,5 @@
 import React from "react";
-import Libro from "./Libro.jsx";
+import Book from "./Book.jsx";
 import {
     Container,
     Grid,
@@ -11,9 +11,9 @@ const Principal = ({ libros, titulo }) => {
             <Grid container spacing={4}>
 
             { filtrados ? libros.filter(item => item.isFiltered === true).map((libro) => (
-                <Libro key={libro.id} libro={libro} titulo={titulo} libros={libros} />
+                <Book key={libro.id} libro={libro} titulo={titulo} libros={libros} />
             )) : libros.map((libro) => (
-                <Libro key={libro.id} libro={libro} titulo={titulo} libros={libros} />
+                <Book key={libro.id} libro={libro} titulo={titulo} libros={libros} />
             ))}
 
             </Grid>

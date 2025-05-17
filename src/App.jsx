@@ -5,9 +5,9 @@ import {Route, Routes} from "react-router";
 import Landing from "./components/Landing.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
-import LibroDetalle from "./components/LibroDetalle.jsx";
-import Libro from "./components/Libro.jsx";
+import Book from "./components/Book.jsx";
 import Checkout from "./components/Checkout/Checkout.jsx";
+import BookDetail from "./components/BookDetail.jsx";
 
 
 function AppContent() {
@@ -19,8 +19,8 @@ function AppContent() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/libros/:titulo" element={<Landing />} />
-                <Route path="/libros/:titulo/:lid" element={<Libro />} />
-                <Route path="/libros/:titulo/detalle/:lid" element={<LibroDetalle />} />
+                <Route path="/libros/:titulo/:lid" element={<Book />} />
+                <Route path="/libros/:titulo/detalle/:lid" element={<BookDetail />} />
                 <Route path="/checkout" element={<Checkout />} />
             </Routes>
             <Footer />
