@@ -22,7 +22,7 @@ const Landing = () => {
 
     return (
         <main className="landing">
-            <ShoppingCart libros={libros} remove={true} />
+            <ShoppingCart libros={libros}  />
             <InputAutoComplete />
             <Principal libros={libros} titulo={titulo} />
         </main>

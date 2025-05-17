@@ -11,11 +11,9 @@ export const navItems = [
         { text: 'Inicio', href: '/', icon: <HomeIcon /> },
         { text: 'Acerca de Nosotros', href: '/about', icon: <InfoIcon /> },
         { text: 'Contactanos', href: '/contact', icon: <ContactsIcon /> },
-        { text: 'Carrito', href: '/carrito', icon: <ShoppingCartIcon /> , },
     ];
 
 const Header = ({ user }) => {
-
     const [mobileOpen, setMobileOpen] = useState(false);
 
     // const navItems = [
@@ -24,6 +22,7 @@ const Header = ({ user }) => {
     //     { text: 'Contactanos', href: '/contact', icon: <ContactsIcon /> },
     //     { text: 'Carrito', href: '/carrito', icon: <ShoppingCartIcon /> , },
     // ];
+
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);

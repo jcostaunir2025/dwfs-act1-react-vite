@@ -4,7 +4,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {Button, Card, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 
 
-const Libro = ({ libro, titulo, libros }) => {
+const Book = ({ libro, titulo, libros }) => {
     const navigate = useNavigate();
     const {cartItems, booklist} = useContext(GlobalContext);
     let libroid = -1;
@@ -43,16 +43,6 @@ const Libro = ({ libro, titulo, libros }) => {
         navigate(`/libros/${titulo}/detalle/${id}`, {state: {datalibro: libro, libros: libros}});
     };
 
-
-    /* <div className="Libro">
-         <h2>{libro.nombre}</h2>
-         <p><strong>Codigo:</strong> {libro.id}</p>
-         <p><strong>Cantidad:</strong> {libro.cantidad}</p>
-         <div className="disponibles">
-             <button onClick={() => {handleDetalleLibroClick(libro.id)}}>Ver Detalle Libro</button>
-         </div>
-     </div>*/
-
     return (
 
         <Grid item xs={12} sm={6} md={4} key={libro.id}>
@@ -89,4 +79,4 @@ const Libro = ({ libro, titulo, libros }) => {
     );
 };
 
-export default Libro;
+export default Book;
