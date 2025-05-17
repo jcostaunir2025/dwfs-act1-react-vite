@@ -23,7 +23,8 @@ function PaymentMethod (){
             <h2 className="">Método de pago</h2>
             <article className="paymentMethod">
                 <div className="paymentMethod__card" data-metodo="tarjeta">
-                    <input type="radio" name="metodoPago" value="Tarjeta de Crédito" id="pagoTarjeta" hidden required/>
+                    <input type="radio" name="metodoPago" value="Tarjeta de Crédito" id="pagoTarjeta" hidden required
+                    onChange={(e) => setDeliveryInfo({ ...deliveryInfo, metodoPago: e.target.value })}/>
                     <label htmlFor="pagoTarjeta">
                         💳 Tarjeta de Crédito
                     </label>
