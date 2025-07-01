@@ -8,21 +8,13 @@ import InfoIcon from '@mui/icons-material/Info';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 export const navItems = [
-        { text: 'Inicio', href: '/', icon: <HomeIcon /> },
+        { text: 'Inicio', href: '/libros/todos', icon: <HomeIcon /> },
         { text: 'Acerca de Nosotros', href: '/about', icon: <InfoIcon /> },
         { text: 'Contactanos', href: '/contact', icon: <ContactsIcon /> },
     ];
 
 const Header = ({ user }) => {
     const [mobileOpen, setMobileOpen] = useState(false);
-
-    // const navItems = [
-    //     { text: 'Inicio', href: '/', icon: <HomeIcon /> },
-    //     { text: 'Acerca de Nosotros', href: '/about', icon: <InfoIcon /> },
-    //     { text: 'Contactanos', href: '/contact', icon: <ContactsIcon /> },
-    //     { text: 'Carrito', href: '/carrito', icon: <ShoppingCartIcon /> , },
-    // ];
-
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -88,23 +80,14 @@ const Header = ({ user }) => {
                     <MenuIcon />
                 </IconButton>
             </Toolbar>
-
-            {/* Drawer para menú móvil */}
             <Drawer
                 anchor="right"
                 open={mobileOpen}
                 onClose={handleDrawerToggle}
-                sx={{ display: { xs: 'block', sm: 'none' } }}
-            >
+                sx={{ display: { xs: 'block', sm: 'none' } }}>
                 {drawer}
             </Drawer>
-        </AppBar>
-    
-    );
-    // <header>
-    //     <h1>Bienvenido a Relatos de Papel - {upperUser}</h1>
-    // </header>
-
+        </AppBar>);
 };
 
 export default Header;

@@ -8,7 +8,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {Button} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -25,7 +24,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
     },
-    // hide last border
     '&:last-child td, &:last-child th': {
         border: 0,
     },
@@ -36,16 +34,16 @@ const BookList = ({ libros }) => {
     const totalPrice = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
 
     const handleRemoveCartItem = (product) => {
-        const existingItem = cartItems.find((item) => item.id === product.id);
+        const existingItem = cartItems.find((item) => item.idlibro === product.idlibro);
         if (existingItem && existingItem.cantidad >= 1) {
             setCartItems(
                 cartItems.map((item) =>
-                    item.id === product.id ? { ...item, cantidad: item.cantidad - 1 } : item
+                    item.idlibro === product.idlibro ? { ...item, cantidad: item.cantidad - 1 } : item
                 ));
-            libros.find((item) => item.id === product.id).cantidad += 1;
+            libros.find((item) => item.idlibro === product.idlibro).cantidad += 1;
             if (existingItem.cantidad === 1) {
-                let newcantidad = booklist.find((item) => item.id === product.id).cantidad;
-                libros.find((item) => item.id === product.id).cantidad = newcantidad;
+                let newcantidad = booklist.find((item) => item.idlibro === product.idlibro).cantidad;
+                libros.find((item) => item.idlibro === product.idlibro).cantidad = newcantidad;
                 cartItems.splice(cartItems.indexOf(existingItem), 1);
             }
         }
@@ -71,9 +69,9 @@ const BookList = ({ libros }) => {
                         </TableHead>
                         <TableBody>
                             {cartItems.map((item) => (
-                                <StyledTableRow key={item.id}>
+                                <StyledTableRow key={item.idlibro}>
                                     <StyledTableCell component="th" scope="row">
-                                                    {item.nombre}
+                                                    {item.titulo}
                                     </StyledTableCell>
                                     <StyledTableCell align="right">{item.precio}</StyledTableCell>
                                     <StyledTableCell align="right">{item.cantidad}</StyledTableCell>

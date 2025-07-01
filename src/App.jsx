@@ -8,6 +8,8 @@ import Login from "./components/Login.jsx";
 import Book from "./components/Book.jsx";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import BookDetail from "./components/BookDetail.jsx";
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 
 function AppContent() {
@@ -31,7 +33,9 @@ function AppContent() {
 function App() {
     return (
         <GlobalProvider>
-            <AppContent />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <AppContent />
+            </LocalizationProvider>
         </GlobalProvider>
     );
 }

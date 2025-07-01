@@ -1,15 +1,34 @@
 import {GlobalContext} from "../context/GlobalContext.jsx";
 import {useLocation, useNavigate} from "react-router";
-import React, {useContext, useEffect, useState} from "react";
-import {Button, Card, CardContent, CardMedia, Grid, Typography} from "@mui/material";
+import React, {useContext, useEffect} from "react";
+import {
+    Button,
+    Card,
+    CardContent,
+    CardMedia,
+    createTheme,
+    ThemeProvider,
+    Tooltip,
+    Typography
+} from "@mui/material";
+import libro3 from '../assets/FrontPageBook.webp';
 
+const theme = createTheme({
+    typography: {
+        subtitle1: {
+            fontSize: 12,
+        },
+        body1: {
+            fontWeight: 500,
+        },
+    },
+});
 
 const Book = ({ libro, titulo, libros }) => {
     const navigate = useNavigate();
     const {cartItems, booklist} = useContext(GlobalContext);
     let libroid = -1;
     const location = useLocation();
-    const [newlibros, setnewlibros] = useState([libros]);
 
     if (location.state !== undefined && location.state !== null) {
         libroid = parseInt(location.state.id);
@@ -17,18 +36,16 @@ const Book = ({ libro, titulo, libros }) => {
 
     useEffect(() => {
         const syncLibros = async () => {
-
             try {
                 if (cartItems.length > 0) {
                     libros.forEach((product) => {
                         let existingItem = cartItems.find((item) => item.id === product.id);
 
                         if (existingItem && existingItem.id === libroid) {
-                            product.cantidad = booklist.find((b) => b.id === product.id).cantidad - existingItem.cantidad;
+                            product.stock = booklist.find((b) => b.id === product.idlibro).stock - existingItem.cantidad;
                         }
                     })
-                    const newlibros = [...libros];
-                    setnewlibros(newlibros);
+                    // setnewlibros([...libros]);
                 }
 
             } catch (error) {
@@ -44,38 +61,49 @@ const Book = ({ libro, titulo, libros }) => {
     };
 
     return (
-
-        <Grid item xs={12} sm={6} md={4} key={libro.id}>
-            <Card>
-                <CardMedia
-                    component="img"
-                    height="250"
-                    image={libro.image}
-                    alt={libro.autor}
-                />
-                <CardContent>
-                    <Typography variant="h6">{libro.id}</Typography>
-                    <Typography variant="body2" color="text.secondary">
+        <Card
+            key={libro.idlibro}
+            sx={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column"
+            }}>
+            <CardMedia
+                component="img"
+                sx={{
+                    height: 150,
+                    objectFit: "contain",
+                    backgroundColor: "#f5f5f5"
+                }}
+                image={libro3}
+                alt={libro.autor}/>
+            <CardContent sx={{flexGrow: 1}}>
+                <ThemeProvider theme={theme}>
+                    <Tooltip title={libro.titulo}>
+                        <Typography
+                            noWrap
+                            variant="body1"
+                            sx={{overflow: "hidden", textOverflow: "ellipsis"}}>
+                            {libro.titulo}
+                        </Typography>
+                    </Tooltip>
+                    <Typography variant="subtitle1" color="textSecondary" noWrap>
                         {libro.autor}
                     </Typography>
-                    <p><strong>Cantidad:</strong> {libro.cantidad}</p>
                     <Typography variant="body1" color="primary" sx={{mt: 1}}>
                         ${libro.precio.toFixed(2)}
                     </Typography>
                     <Button
-                        id="disponibles"
                         fullWidth
                         variant="contained"
+                        size="small"
                         sx={{mt: 2}}
-                        onClick={() => {
-                            handleDetalleLibroClick(libro.id)
-                        }}
-                    >
-                        Ver Detalle Libro
+                        onClick={() => handleDetalleLibroClick(libro.idlibro)}>
+                        Ver Detalle
                     </Button>
-                </CardContent>
-            </Card>
-        </Grid>
+                </ThemeProvider>
+            </CardContent>
+        </Card>
     );
 };
 

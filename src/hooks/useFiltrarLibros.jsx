@@ -1,26 +1,26 @@
 import { useState, useEffect } from 'react';
-import getAllBooks from "../api/services/BookService";
+import getFilteredBooks from "../api/services/BookFilterService";
 
-const useLibros = (page) => {
+const useFiltrarLibros = (filters, page) => {
     const [loading, setLoading] = useState(false);
-    const [libros, setLibros] = useState([]);
+    const [libros, setLibros] = useState(null);
 
     useEffect(() => {
         const obtenerYFiltrar = async () => {
             setLoading(true);
             try {
-                const data = await getAllBooks(page);
+                const data = await getFilteredBooks(filters, page);
                 setLibros(data);
             } catch (e) {
-                console.error("Error al traer libros", e);
+                console.error("Error al traer libros filtrados", e);
             } finally {
                 setLoading(false);
             }
         };
         obtenerYFiltrar();
-    }, [page]);
+    }, [filters, page]);
 
     return { libros, loading };
 };
 
-export default useLibros;
+export default useFiltrarLibros;

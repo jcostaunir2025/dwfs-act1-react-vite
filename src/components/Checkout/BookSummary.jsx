@@ -10,7 +10,7 @@ const BookSummary = ({ bookInfo }) => {
                 <span className="summaryBook__amount">{bookInfo.cantidad}</span>
             </div>
             <div className="summaryBook__info">
-                <span className="summaryBook__name">{bookInfo.nombre}</span>
+                <span className="summaryBook__name">{bookInfo.titulo}</span>
                 <span className="summaryBook__price">${bookInfo.precio}</span>
             </div>
         </div>

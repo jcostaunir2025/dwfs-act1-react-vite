@@ -1,13 +1,21 @@
 import React, {useContext, useState} from "react";
 import {GlobalContext} from "../context/GlobalContext.jsx";
 import {useNavigate} from "react-router";
-import {Button, Drawer, Box, Typography, IconButton, Divider } from '@mui/material';
+import {Fab, Drawer, Box, Typography, IconButton, Divider, Button, Badge} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BookList from "./BookList.jsx";
+
+const fabStyle = {
+    position: 'fixed',
+    bottom: 16,
+    right: 16,
+};
 
 const ShoppingCart = ({libros}) => {
     const {cartItems} = useContext(GlobalContext);
     const navigate = useNavigate();
+    const totalItems = cartItems.reduce((sum, item) => sum + item.cantidad, 0);
 
     const goCheckout = () => {
         navigate("/checkout");
@@ -21,9 +29,12 @@ const ShoppingCart = ({libros}) => {
 
     return (
         <div>
-            <Button variant="contained" onClick={toggleDrawer(true)} color="secondary">
-                Mostrar Carrito
-            </Button>
+
+            <Fab sx={fabStyle} onClick={toggleDrawer(true)} color="warning" aria-label="viewCart">
+                <Badge badgeContent={totalItems} color="secondary">
+                <ShoppingCartIcon />
+                </Badge>
+            </Fab>
             <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}
                     slotProps={{ paper: { sx: { width: 500 },}}}>
                 <Box sx={{ p: 2, position: 'relative', height: '100%' }}>
