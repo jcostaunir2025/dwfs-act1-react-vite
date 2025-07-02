@@ -2,7 +2,7 @@ import api from '../conf/ServerConf.js'
 
 const getBookDetail = async (idLibro) => {
     try{
-        const response = await api.post('/libros/' + idLibro,
+        const response = await api.post('/books-catalogue/libros/' + idLibro,
             {
                 targetMethod: "GET"
             });

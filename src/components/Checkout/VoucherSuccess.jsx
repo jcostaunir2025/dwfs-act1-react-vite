@@ -1,11 +1,12 @@
 import {useContext} from "react";
 import {GlobalContext} from "../../context/GlobalContext.jsx";
 
-const VoucherSuccess = () => {
+const VoucherSuccess = ({id}) => {
     const {deliveryInfo} = useContext(GlobalContext);
     return (
         <section className="mainContainer">
                 <h2>✅ ¡Gracias por tu compra!</h2>
+                <p><strong>Número de la Orden:</strong> {id}</p>
                 <p><strong>Nombre:</strong> {deliveryInfo.nombre}</p>
                 <p><strong>Dirección:</strong> {deliveryInfo.direccion}</p>
                 <p><strong>Ciudad:</strong> {deliveryInfo.ciudad}</p>

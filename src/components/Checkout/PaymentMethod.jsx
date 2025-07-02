@@ -3,20 +3,33 @@ import {GlobalContext} from "../../context/GlobalContext.jsx";
 import Alert from "./Alert.jsx";
 import VoucherSuccess from "./VoucherSuccess.jsx";
 import {useNavigate} from "react-router";
+import createOrder from "../../api/services/CreateOrdersService.js";
 
 function PaymentMethod (){
-    const { deliveryInfo, setDeliveryInfo } = useContext(GlobalContext);
-    const [showAlert, setShowAlert] = useState(false);
+    const { deliveryInfo, setDeliveryInfo, cartItems } = useContext(GlobalContext);
     const { setCartItems } = useContext(GlobalContext);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const [rsCreateOrder, setRsCreateOrder] = useState({});
+
+    async function makePayment() {
+        setLoading(false);
+        try {
+            const data = await createOrder(Object.values(cartItems).map(p => p.idlibro));
+            setRsCreateOrder(data);
+        } catch (e) {
+            console.error("Error crear la orden", e);
+        } finally {
+            setLoading(true);
+        }
+    }
 
     const goHome = () => {
         setCartItems([]);
-        setShowAlert(false);
         navigate("/libros/:titulo");
     };
 
-    const voucher = <VoucherSuccess/>;
+    const voucher = <VoucherSuccess id={rsCreateOrder.id}/>;
 
     return (
         <section className="mainContainer">
@@ -37,8 +50,8 @@ function PaymentMethod (){
                     </label>
                 </article>
             </article>
-            <button className="checkoutButton" onClick={() => setShowAlert(true)}>Realizar pago</button>
-            {showAlert && (<Alert content={voucher} onClose={goHome} />)}
+            <button className="checkoutButton" onClick={makePayment}>Realizar pago</button>
+            {loading && (<Alert content={voucher} onClose={goHome} />)}
         </section>
     );
 }

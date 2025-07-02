@@ -2,7 +2,7 @@ import api from '../conf/ServerConf.js'
 
 const getAllBooks = async (page) => {
     try{
-        const response = await api.post('/libros',
+        const response = await api.post('/books-catalogue/libros',
             {
                 targetMethod: "GET",
                 "queryParams": {

@@ -3,7 +3,7 @@ import api from '../conf/ServerConf.js'
 const getFilteredBooks = async (filters, page) => {
 
     try{
-        const response = await api.post('/librosagg',getPayload(filters, page));
+        const response = await api.post('/books-catalogue/librosagg',getPayload(filters, page));
         return response.data;
     }catch (e) {
         console.error('Error al obtener todos los libros' + e);
